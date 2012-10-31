@@ -10,6 +10,10 @@
       android:id="@+id/question"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
+      android:gravity="center"
+      android:textStyle="bold"
+      android:textSize="24sp"
+      android:layout_marginBottom="12sp"
       android:text="Please wait..."
       />
 
@@ -42,6 +46,29 @@
         />
 
   </LinearLayout>
+
+  <Button 
+      android:id="@+id/skip"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"        
+      android:layout_marginTop="12sp"
+      android:text="Skip Question"
+      />
+
+  <Button 
+      android:id="@+id/view"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"        
+      android:layout_marginTop="12sp"
+      android:textSize="18sp"
+      android:textColor="#9d1111"
+      android:textStyle="bold"
+      android:shadowDx="0"
+      android:shadowDy="-3"
+      android:shadowRadius="1.5"
+      android:shadowColor="#fff"
+      android:text="Feed Me!"
+      />
 
 </LinearLayout>
 
