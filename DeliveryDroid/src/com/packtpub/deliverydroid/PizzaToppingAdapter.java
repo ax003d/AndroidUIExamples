@@ -1,8 +1,11 @@
 package com.packtpub.deliverydroid;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
 
 class PizzaToppingAdapter extends BaseExpandableListAdapter {
     private final ToppingCatagory[] catagories;
@@ -24,8 +27,21 @@ class PizzaToppingAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
+		ViewGroup view;
+        if (convertView instanceof ViewGroup) {
+            view = (ViewGroup)convertView;
+        } else {
+            final Context context = parent.getContext();
+            final LayoutInflater inflater = LayoutInflater.from(context);
+            view = (ViewGroup)inflater.inflate(R.layout.pizza_item, null);	
+        }
+        
+        TextView text1 = (TextView)view.findViewById(R.id.status);
+        TextView text2 = (TextView)view.findViewById(R.id.text);
+        PizzaTopping topping = (PizzaTopping)getChild(groupPosition, childPosition);
+        text1.setVisibility(View.INVISIBLE);
+        text2.setText(topping.name);
+		return view;
 	}
 
 	@Override
@@ -51,8 +67,17 @@ class PizzaToppingAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
+		TextView view;
+        if (convertView instanceof TextView) {
+            view = (TextView)convertView;
+        } else {
+            final Context context = parent.getContext();
+            final LayoutInflater inflater = LayoutInflater.from(context);
+            view = (TextView)inflater.inflate(android.R.layout.simple_expandable_list_item_1, null);
+        }
+        
+		view.setText(catagories[groupPosition].name);
+		return view;
 	}
 
 	@Override
