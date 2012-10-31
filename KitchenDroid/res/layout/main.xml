@@ -5,11 +5,43 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     >
+
   <TextView 
       android:id="@+id/question"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Please wait..."
       />
+
+  <LinearLayout 
+      android:id="@+id/answers"
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      >
+
+    <Button 
+        android:id="@+id/yes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Yes!"
+        />
+
+    <Button 
+        android:id="@+id/no"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="No!"
+        />
+
+    <Button 
+        android:id="@+id/maybe"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Maybe!"
+        />
+
+  </LinearLayout>
+
 </LinearLayout>
 
