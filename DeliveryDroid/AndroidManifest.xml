@@ -20,5 +20,13 @@
           </intent-filter>
         </activity>
 
+        <activity android:name="TheMicksPizzaActivity"
+                  android:label="The Mick\'s Pizza">
+          <intent-filter>
+            <action android:name=
+                    "com.packtpub.deliverydroid.TheMicksPizzaActivity"/>
+          </intent-filter>
+        </activity>
+
     </application>
 </manifest> 
