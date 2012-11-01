@@ -5,18 +5,23 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Gallery;
+import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextSwitcher;
 import android.widget.ViewSwitcher;
 
 public class ReviewActivity extends TabActivity implements
-		ViewSwitcher.ViewFactory, Runnable {
+		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener {
 
 	private final Handler switchCommentHandler = new Handler();
 	private TextSwitcher switcher;
 	private String[] comments;
 	private int commentIndex = 0;
+	private ImageView photo;
 
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,11 @@ public class ReviewActivity extends TabActivity implements
 		comments = resources.getStringArray(R.array.comments);
 		switcher = (TextSwitcher) findViewById(R.id.reviews);
 		switcher.setFactory(this);
+		
+		photo = ((ImageView)findViewById(R.id.photo));
+		Gallery photos = ((Gallery)findViewById(R.id.gallery));
+		photos.setAdapter(new GalleryAdapter());
+		photos.setOnItemSelectedListener(this);
 	}
 
 	public View makeView() {
@@ -76,6 +86,18 @@ public class ReviewActivity extends TabActivity implements
 		} finally {
 			switchCommentHandler.postDelayed(this, 5 * 1000l);
 		}
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		photo.setImageResource((int)id);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
