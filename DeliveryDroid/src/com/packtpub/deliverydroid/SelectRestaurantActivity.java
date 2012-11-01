@@ -31,7 +31,10 @@ public class SelectRestaurantActivity extends Activity implements
 			break;
 		case 1:
 			startActivity(new Intent(this, TheMicksPizzaActivity.class));
-			break;			
+			break;
+		case 2:
+			startActivity(new Intent(this, FourBucketsActivity.class));
+			break;
 		}
 	}
 }

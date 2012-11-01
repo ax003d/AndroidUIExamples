@@ -28,5 +28,13 @@
           </intent-filter>
         </activity>
 
+        <activity android:name="FourBucketsActivity"
+                  android:label="Four Buckets Fruit">
+          <intent-filter>
+            <action android:name=
+                    "com.packtpub.deliverydroid.FourBucketsActivity"/>
+          </intent-filter>
+        </activity>
+
     </application>
 </manifest> 
