@@ -36,5 +36,13 @@
           </intent-filter>
         </activity>
 
+        <activity android:name="SamsSushiActivity"
+                  android:label="Sam's Sushi">
+          <intent-filter>
+            <action android:name=
+                    "com.packtpub.deliverydroid.SamsSushiActivity"/>
+          </intent-filter>
+        </activity>
+
     </application>
 </manifest> 

@@ -9,4 +9,14 @@
     <item>Sam\'s Sushi</item>
   </string-array>
 
+  <string-array name="sushis">
+    <item>Sashimi</item>
+    <item>Maki Roll</item>
+    <item>Nigiri</item>
+    <item>Oshi</item>
+    <item>California Roll</item>
+    <item>Fashion Sandwich</item>
+    <item>Hand Roll</item>
+  </string-array>
+
 </resources>

@@ -35,6 +35,9 @@ public class SelectRestaurantActivity extends Activity implements
 		case 2:
 			startActivity(new Intent(this, FourBucketsActivity.class));
 			break;
+		case 3:
+			startActivity(new Intent(this, SamsSushiActivity.class));
+			break;			
 		}
 	}
 }
