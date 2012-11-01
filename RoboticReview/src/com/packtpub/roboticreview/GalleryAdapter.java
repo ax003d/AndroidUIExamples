@@ -8,16 +8,13 @@ import android.widget.ImageView;
 
 class GalleryAdapter extends BaseAdapter {
 
-	private final int[] thumbnails = new int[] { R.drawable.curry_view_thn,
-			R.drawable.jai_thn, };
-
 	private final int[] images = new int[] { R.drawable.curry_view,
 			R.drawable.jai,
 	};
 
 	@Override
 	public int getCount() {
-		return thumbnails.length;
+		return images.length;
 	}
 
 	@Override
@@ -34,7 +31,7 @@ class GalleryAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView view = convertView instanceof ImageView ? (ImageView)convertView :
 			(ImageView)LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_thn, null);
-		view.setImageResource(thumbnails[position]);
+		view.setImageResource(images[position]);
 		return view;
 	}
 
