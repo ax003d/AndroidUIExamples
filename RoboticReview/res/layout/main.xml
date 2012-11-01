@@ -47,10 +47,12 @@
              android:layout_marginBottom="5dip"
              />
 
-    <ImageView android:id="@+id/photo"
-               android:layout_width="fill_parent"
-               android:layout_height="fill_parent"
-               android:scaleType="centerInside"
+    <ImageSwitcher android:id="@+id/photo"
+                   android:layout_width="fill_parent"
+                   android:layout_height="fill_parent"
+                   android:inAnimation="@android:anim/fade_in"
+                   android:outAnimation="@android:anim/fade_out"
+                   android:scaleType="centerInside"
                />
 
   </LinearLayout>

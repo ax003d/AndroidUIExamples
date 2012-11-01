@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Gallery;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextSwitcher;
@@ -15,11 +16,20 @@ import android.widget.ViewSwitcher;
 public class ReviewActivity extends TabActivity implements
 		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener {
 
+	public class ImageSwitcherFactory implements ViewSwitcher.ViewFactory {
+
+		@Override
+		public View makeView() {
+			return new ImageView(ReviewActivity.this);
+		}
+		
+	} 
+	
 	private final Handler switchCommentHandler = new Handler();
 	private TextSwitcher switcher;
 	private String[] comments;
 	private int commentIndex = 0;
-	private ImageView photo;
+	private ImageSwitcher photo;
 
 	
 	/** Called when the activity is first created. */
@@ -57,7 +67,9 @@ public class ReviewActivity extends TabActivity implements
 		switcher = (TextSwitcher) findViewById(R.id.reviews);
 		switcher.setFactory(this);
 		
-		photo = ((ImageView)findViewById(R.id.photo));
+		photo = (ImageSwitcher)findViewById(R.id.photo);
+		photo.setFactory(new ImageSwitcherFactory());
+		
 		Gallery photos = ((Gallery)findViewById(R.id.gallery));
 		photos.setAdapter(new GalleryAdapter());
 		photos.setOnItemSelectedListener(this);
