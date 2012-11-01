@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ReviewActivity</string>
+    <string name="app_name">Robotic Review</string>
+    <string name="review">Review</string>
+    <string name="gallery">Photos</string>
+    <string name="reservation">Reservations</string>
+
+    <string-array name="comments">
+      <item>Just Fantastic</item>
+      <item>Amazing Food</item>
+      <item>What rubbish, the food was too hairy</item>
+      <item>Messy kitchen; call the health inspector.</item>
+    </string-array>
+
 </resources>
