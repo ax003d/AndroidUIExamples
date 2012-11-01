@@ -30,6 +30,7 @@ public class ReviewActivity extends TabActivity implements
 	private String[] comments;
 	private int commentIndex = 0;
 	private ImageSwitcher photo;
+	private Gallery photos;
 
 	
 	/** Called when the activity is first created. */
@@ -70,7 +71,7 @@ public class ReviewActivity extends TabActivity implements
 		photo = (ImageSwitcher)findViewById(R.id.photo);
 		photo.setFactory(new ImageSwitcherFactory());
 		
-		Gallery photos = ((Gallery)findViewById(R.id.gallery));
+		photos = ((Gallery)findViewById(R.id.gallery));
 		photos.setAdapter(new GalleryAdapter());
 		photos.setOnItemSelectedListener(this);
 	}
@@ -103,7 +104,7 @@ public class ReviewActivity extends TabActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
-		photo.setImageResource((int)id);
+		photo.setImageDrawable(Utils.LoadImageFromWebOperations((String)photos.getAdapter().getItem(position)));
 	}
 
 	@Override

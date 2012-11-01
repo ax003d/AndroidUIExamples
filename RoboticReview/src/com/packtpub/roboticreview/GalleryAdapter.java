@@ -8,9 +8,10 @@ import android.widget.ImageView;
 
 class GalleryAdapter extends BaseAdapter {
 
-	private final int[] images = new int[] { R.drawable.curry_view,
-			R.drawable.jai,
-	};
+	private final String[] images = new String[] {
+			"http://fs.memori.cn/tushuo/photo/1347885049683.jpg",
+			"http://fs.memori.cn/tushuo/photo/1347885263240.jpg",
+			"http://fs.memori.cn/tushuo/photo/1347885636990.jpg" };
 
 	@Override
 	public int getCount() {
@@ -19,19 +20,20 @@ class GalleryAdapter extends BaseAdapter {
 
 	@Override
 	public Object getItem(int position) {
-		return Integer.valueOf(images[position]);
-	}
-
-	@Override
-	public long getItemId(int position) {
 		return images[position];
 	}
 
 	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ImageView view = convertView instanceof ImageView ? (ImageView)convertView :
-			(ImageView)LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_thn, null);
-		view.setImageResource(images[position]);
+		ImageView view = convertView instanceof ImageView ? (ImageView) convertView
+				: (ImageView) LayoutInflater.from(parent.getContext()).inflate(
+						R.layout.gallery_thn, null);
+		view.setImageDrawable(Utils.LoadImageFromWebOperations(images[position]));
 		return view;
 	}
 
