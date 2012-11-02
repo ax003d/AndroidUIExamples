@@ -1,16 +1,21 @@
 package com.packtpub.roboticreview;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.DatePickerDialog;
 import android.app.TabActivity;
+import android.app.TimePickerDialog;
+import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Gallery;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
@@ -18,11 +23,12 @@ import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.ViewSwitcher;
 
 public class ReviewActivity extends TabActivity implements
 		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener,
-		SeekBar.OnSeekBarChangeListener {
+		SeekBar.OnSeekBarChangeListener, View.OnClickListener, DatePickerDialog.OnDateSetListener, OnTimeSetListener {
 
 	public class ImageSwitcherFactory implements ViewSwitcher.ViewFactory {
 
@@ -106,7 +112,9 @@ public class ReviewActivity extends TabActivity implements
 		calendar.clear(Calendar.MILLISECOND);
 		Date reservationDate = calendar.getTime();
 		date.setText(dateFormat.format(reservationDate));
+		date.setOnClickListener(this);
 		time.setText(timeFormat.format(reservationDate));
+		time.setOnClickListener(this);
 		SeekBar people = (SeekBar) findViewById(R.id.people);
 		people.setOnSeekBarChangeListener(this);
 		peopleLable.setText(String.format(peopleLableFormat,
@@ -168,6 +176,55 @@ public class ReviewActivity extends TabActivity implements
 	public void onStopTrackingTouch(SeekBar seekBar) {
 		// TODO Auto-generated method stub
 
+	}
+
+	private Calendar parseCalendar(CharSequence text, SimpleDateFormat format) {
+		Date parsedDate;
+		try {
+			parsedDate = format.parse(text.toString());
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(parsedDate);
+		return calendar;
+	}
+	
+	@Override
+	public void onClick(View v) {
+		if ( v == date ) {
+			Calendar calendar = parseCalendar(date.getText(), dateFormat);
+			new DatePickerDialog(this, 
+					this,
+					calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH),
+					calendar.get(Calendar.DATE)).show();
+		} else if ( v == time ) {
+			Calendar calendar = parseCalendar(time.getText(), timeFormat);
+			new TimePickerDialog(this,
+					this,
+					calendar.get(Calendar.HOUR_OF_DAY),
+					calendar.get(Calendar.MINUTE),
+					false).show();
+		}
+	}
+
+	@Override
+	public void onDateSet(DatePicker view, int year, int monthOfYear,
+			int dayOfMonth) {		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, monthOfYear);
+		calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+		date.setText(dateFormat.format(calendar.getTime()));
+	}
+
+	@Override
+	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+		calendar.set(Calendar.MINUTE, minute);
+		time.setText(timeFormat.format(calendar.getTime()));
 	}
 
 }
