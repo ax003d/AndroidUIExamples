@@ -1,16 +1,23 @@
 package com.packtpub.roboticreview;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.TabActivity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TabHost;
 import android.widget.TextSwitcher;
+import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 public class ReviewActivity extends TabActivity implements
@@ -29,9 +36,16 @@ public class ReviewActivity extends TabActivity implements
 	private TextSwitcher switcher;
 	private String[] comments;
 	private int commentIndex = 0;
+	
 	private ImageSwitcher photo;
 	private Gallery photos;
 
+	private String peopleLableFormat;
+	private TextView peopleLable;
+	private SimpleDateFormat dateFormat;
+	private Button date;
+	private SimpleDateFormat timeFormat;
+	private Button time;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -74,6 +88,26 @@ public class ReviewActivity extends TabActivity implements
 		photos = ((Gallery)findViewById(R.id.gallery));
 		photos.setAdapter(new GalleryAdapter());
 		photos.setOnItemSelectedListener(this);
+		
+		peopleLable = (TextView) findViewById(R.id.people_label);
+		peopleLableFormat = peopleLable.getText().toString();
+		date = (Button)findViewById(R.id.date);
+		dateFormat = new SimpleDateFormat(date.getText().toString());
+		time = (Button)findViewById(R.id.time);
+		timeFormat = new SimpleDateFormat(time.getText().toString());
+		Calendar calendar = Calendar.getInstance();
+		if ( calendar.get(Calendar.HOUR_OF_DAY) >= 16 ) {
+			calendar.add(Calendar.DATE, 1);
+		}
+		calendar.set(Calendar.HOUR_OF_DAY, 18);
+		calendar.clear(Calendar.MINUTE);
+		calendar.clear(Calendar.SECOND);
+		calendar.clear(Calendar.MILLISECOND);
+		Date reservationDate = calendar.getTime();
+		date.setText(dateFormat.format(reservationDate));
+		time.setText(timeFormat.format(reservationDate));
+		SeekBar people = (SeekBar)findViewById(R.id.people);
+		peopleLable.setText(String.format(peopleLableFormat, people.getProgress() + 1));
 	}
 
 	public View makeView() {
