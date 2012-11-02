@@ -21,7 +21,8 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 public class ReviewActivity extends TabActivity implements
-		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener {
+		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener,
+		SeekBar.OnSeekBarChangeListener {
 
 	public class ImageSwitcherFactory implements ViewSwitcher.ViewFactory {
 
@@ -29,14 +30,14 @@ public class ReviewActivity extends TabActivity implements
 		public View makeView() {
 			return new ImageView(ReviewActivity.this);
 		}
-		
-	} 
-	
+
+	}
+
 	private final Handler switchCommentHandler = new Handler();
 	private TextSwitcher switcher;
 	private String[] comments;
 	private int commentIndex = 0;
-	
+
 	private ImageSwitcher photo;
 	private Gallery photos;
 
@@ -46,7 +47,7 @@ public class ReviewActivity extends TabActivity implements
 	private Button date;
 	private SimpleDateFormat timeFormat;
 	private Button time;
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -81,22 +82,22 @@ public class ReviewActivity extends TabActivity implements
 		comments = resources.getStringArray(R.array.comments);
 		switcher = (TextSwitcher) findViewById(R.id.reviews);
 		switcher.setFactory(this);
-		
-		photo = (ImageSwitcher)findViewById(R.id.photo);
+
+		photo = (ImageSwitcher) findViewById(R.id.photo);
 		photo.setFactory(new ImageSwitcherFactory());
-		
-		photos = ((Gallery)findViewById(R.id.gallery));
+
+		photos = ((Gallery) findViewById(R.id.gallery));
 		photos.setAdapter(new GalleryAdapter());
 		photos.setOnItemSelectedListener(this);
-		
+
 		peopleLable = (TextView) findViewById(R.id.people_label);
 		peopleLableFormat = peopleLable.getText().toString();
-		date = (Button)findViewById(R.id.date);
+		date = (Button) findViewById(R.id.date);
 		dateFormat = new SimpleDateFormat(date.getText().toString());
-		time = (Button)findViewById(R.id.time);
+		time = (Button) findViewById(R.id.time);
 		timeFormat = new SimpleDateFormat(time.getText().toString());
 		Calendar calendar = Calendar.getInstance();
-		if ( calendar.get(Calendar.HOUR_OF_DAY) >= 16 ) {
+		if (calendar.get(Calendar.HOUR_OF_DAY) >= 16) {
 			calendar.add(Calendar.DATE, 1);
 		}
 		calendar.set(Calendar.HOUR_OF_DAY, 18);
@@ -106,8 +107,10 @@ public class ReviewActivity extends TabActivity implements
 		Date reservationDate = calendar.getTime();
 		date.setText(dateFormat.format(reservationDate));
 		time.setText(timeFormat.format(reservationDate));
-		SeekBar people = (SeekBar)findViewById(R.id.people);
-		peopleLable.setText(String.format(peopleLableFormat, people.getProgress() + 1));
+		SeekBar people = (SeekBar) findViewById(R.id.people);
+		people.setOnSeekBarChangeListener(this);
+		peopleLable.setText(String.format(peopleLableFormat,
+				people.getProgress() + 1));
 	}
 
 	public View makeView() {
@@ -138,13 +141,33 @@ public class ReviewActivity extends TabActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
-		photo.setImageDrawable(Utils.LoadImageFromWebOperations((String)photos.getAdapter().getItem(position)));
+		photo.setImageDrawable(Utils.LoadImageFromWebOperations((String) photos
+				.getAdapter().getItem(position)));
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		peopleLable.setText(String.format(peopleLableFormat, progress + 1));
+
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
