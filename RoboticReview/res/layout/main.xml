@@ -6,7 +6,12 @@
     >
 
   <include android:id="@+id/review" layout="@layout/review" />
-  <include android:id="@+id/photos" layout="@layout/photos" />
+  <ViewStub android:id="@+id/photos" 
+            android:inflatedId="@+id/inflated_photos"
+            android:layout="@layout/photos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
   <include android:id="@+id/reservation" layout="@layout/reservation" />
 
 </FrameLayout>

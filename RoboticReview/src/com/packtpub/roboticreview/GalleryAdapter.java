@@ -1,5 +1,6 @@
 package com.packtpub.roboticreview;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ class GalleryAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		Log.d("getView", String.valueOf(position));
 		ImageView view = convertView instanceof ImageView ? (ImageView) convertView
 				: (ImageView) LayoutInflater.from(parent.getContext()).inflate(
 						R.layout.gallery_thn, null);

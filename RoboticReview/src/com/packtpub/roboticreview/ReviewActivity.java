@@ -12,7 +12,9 @@ import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,8 +29,14 @@ import android.widget.TimePicker;
 import android.widget.ViewSwitcher;
 
 public class ReviewActivity extends TabActivity implements
-		ViewSwitcher.ViewFactory, Runnable, AdapterView.OnItemSelectedListener,
-		SeekBar.OnSeekBarChangeListener, View.OnClickListener, DatePickerDialog.OnDateSetListener, OnTimeSetListener {
+		ViewSwitcher.ViewFactory, 
+		Runnable, 
+		AdapterView.OnItemSelectedListener,
+		SeekBar.OnSeekBarChangeListener, 
+		View.OnClickListener, 
+		DatePickerDialog.OnDateSetListener, 
+		OnTimeSetListener,
+		TabHost.OnTabChangeListener {
 
 	public class ImageSwitcherFactory implements ViewSwitcher.ViewFactory {
 
@@ -53,6 +61,8 @@ public class ReviewActivity extends TabActivity implements
 	private Button date;
 	private SimpleDateFormat timeFormat;
 	private Button time;
+	
+	private boolean inflated = false;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -84,17 +94,11 @@ public class ReviewActivity extends TabActivity implements
 		tabs.addTab(details);
 		tabs.addTab(gallery);
 		tabs.addTab(reservation);
+		tabs.setOnTabChangedListener(this);
 
 		comments = resources.getStringArray(R.array.comments);
 		switcher = (TextSwitcher) findViewById(R.id.reviews);
 		switcher.setFactory(this);
-
-		photo = (ImageSwitcher) findViewById(R.id.photo);
-		photo.setFactory(new ImageSwitcherFactory());
-
-		photos = ((Gallery) findViewById(R.id.gallery));
-		photos.setAdapter(new GalleryAdapter());
-		photos.setOnItemSelectedListener(this);
 
 		peopleLable = (TextView) findViewById(R.id.people_label);
 		peopleLableFormat = peopleLable.getText().toString();
@@ -225,6 +229,21 @@ public class ReviewActivity extends TabActivity implements
 		calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 		calendar.set(Calendar.MINUTE, minute);
 		time.setText(timeFormat.format(calendar.getTime()));
+	}
+
+	@Override
+	public void onTabChanged(String tabId) {
+		if ( tabId.equals("photos") && !inflated ) {
+			ViewStub stub = (ViewStub) findViewById(R.id.photos);
+			stub.setVisibility(View.VISIBLE);
+			photo = (ImageSwitcher) findViewById(R.id.photo);
+			photo.setFactory(new ImageSwitcherFactory());
+			
+			photos = ((Gallery) findViewById(R.id.gallery));
+			photos.setAdapter(new GalleryAdapter());
+			photos.setOnItemSelectedListener(this);
+			inflated = true;
+		}
 	}
 
 }
