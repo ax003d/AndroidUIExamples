@@ -24,13 +24,37 @@ public class ViewContactActivity extends Activity implements OnClickListener {
 		TextView name = (TextView) findViewById(R.id.display_name);
 		Button number = (Button) findViewById(R.id.phone_number);
 				
-		Cursor c = managedQuery(getIntent().getData(), new String[] { People.NAME,
-			People.NUMBER}, null, null, null);
-
+		Cursor c = managedQuery(getIntent().getData(), null, null, null, null);
+		for ( String col: c.getColumnNames() ) {
+			Log.d("onCreate", col);
+		}		
+		
 		try {
 			if (c.moveToNext()) {
-				name.setText(c.getString(0));
-				number.setText(c.getString(1));
+				String id = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+				String display_name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+				String has_phone = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+				String phone_number = null;
+				
+				if ( has_phone.equals("1") ) {
+					Cursor nc = getContentResolver().query(
+							ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+		                    null,
+		                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + id, 
+		                    null, 
+		                    null);
+					try {
+						if ( nc.moveToNext() ) {
+							phone_number = nc.getString(nc.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+						}
+					} finally {
+						nc.close();
+					}
+				}
+				
+				name.setText(display_name);
+				if ( phone_number != null )
+					number.setText("tel://" + phone_number);
 			}
 		} finally {
 			c.close();
