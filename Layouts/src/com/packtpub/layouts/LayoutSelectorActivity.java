@@ -1,6 +1,7 @@
 package com.packtpub.layouts;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,9 @@ public class LayoutSelectorActivity extends ListActivity
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	switch (position) {
+    	case 0:
+    		startActivity(new Intent(this, FrameLayoutActivity.class));
+    		break;
     	default:
     		Toast.makeText(this, "Example not yet implemented", Toast.LENGTH_SHORT).show();
     	}
