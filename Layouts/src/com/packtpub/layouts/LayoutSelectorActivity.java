@@ -28,6 +28,9 @@ public class LayoutSelectorActivity extends ListActivity
     	case 0:
     		startActivity(new Intent(this, FrameLayoutActivity.class));
     		break;
+    	case 1:
+    		startActivity(new Intent(this, TableLayoutActivity.class));
+    		break;
     	default:
     		Toast.makeText(this, "Example not yet implemented", Toast.LENGTH_SHORT).show();
     	}

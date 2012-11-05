@@ -17,5 +17,10 @@
             android:label="Frame Layout Example">         
         </activity>
 
+        <activity
+            android:name="TableLayoutActivity"
+            android:label="Table Layout Example">         
+        </activity>
+
     </application>
 </manifest>
