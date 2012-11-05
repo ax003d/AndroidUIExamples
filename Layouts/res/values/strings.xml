@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LayoutSelectorActivity</string>
+
+    <string-array name="layouts">
+      <item>Frame Layout</item>
+      <item>Table Layout</item>
+      <item>Custom Layout</item>
+      <item>Relative Layout</item>
+      <item>Sliding Drawer</item>
+    </string-array>
 </resources>
