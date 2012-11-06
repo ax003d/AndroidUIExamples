@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AnimationSelector</string>
+
+    <string-array name="headlines">
+      <item>Pwnies found to inhabit Mars</item>
+      <item>Geeks invent \"atoms\"</item>
+      <item>Politician found not lying!</item>
+    </string-array>
+
 </resources>
