@@ -6,6 +6,7 @@ import java.util.Collections;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -72,8 +73,9 @@ public class TableLayoutActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.table_layout);
 		
-		TableLayout table = new TableLayout(this);
+		TableLayout table = (TableLayout)findViewById(R.id.table);
 		int size = 4;
 		cards = createMemoryCells(size * size);
 		Collections.shuffle(Arrays.asList(cards));
@@ -82,9 +84,9 @@ public class TableLayoutActivity extends Activity {
 			for ( int x = 0; x < size; x++ ) {
 				row.addView(cards[y * size + x].button);
 			}
+			row.setGravity(Gravity.CENTER);
 			table.addView(row);
-		}
-		setContentView(table);
+		}		
 	}
 	
 	private void onMemoryCardUncovered(final MemoryCard cell) {
