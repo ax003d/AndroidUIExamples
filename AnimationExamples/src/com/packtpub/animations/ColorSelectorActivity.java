@@ -21,6 +21,7 @@ public class ColorSelectorActivity extends Activity {
 		GridLayoutAnimationController animationController = new GridLayoutAnimationController(
 				animation, 0.2f, 0.2f);
 		view = (GridView) findViewById(R.id.colors);
+		view.setNumColumns(10);
 		view.setAdapter(new ColorAdapter(10, 10));
 		view.setLayoutAnimation(animationController);
 	}
