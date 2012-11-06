@@ -3,6 +3,8 @@ package com.packtpub.selector;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.provider.Contacts.People;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -25,7 +27,7 @@ public class StarterActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if ( requestCode == 101 && resultCode == RESULT_OK ) {
+		if ( (requestCode == 101 || requestCode == 202) && resultCode == RESULT_OK ) {
 			Object obj = data.getSerializableExtra("selection");
 			Toast.makeText(this, String.valueOf(obj), Toast.LENGTH_SHORT).show();
 		}
@@ -41,7 +43,10 @@ public class StarterActivity extends Activity implements OnClickListener {
 			});
 			startActivityForResult(intent, 101);
 		} else if ( v.getId() == R.id.btn_db ) {
-			
+			intent.setData(ContactsContract.Contacts.CONTENT_URI);
+			intent.putExtra("line1", ContactsContract.Contacts.DISPLAY_NAME);
+			intent.putExtra("line2", ContactsContract.Contacts.HAS_PHONE_NUMBER);
+			startActivityForResult(intent, 202);
 		}
 	}
 }

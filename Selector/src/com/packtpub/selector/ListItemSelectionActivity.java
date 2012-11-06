@@ -63,7 +63,7 @@ public class ListItemSelectionActivity extends Activity implements TextWatcher, 
     	if ( col == null ) {
     		col = def;
     	}
-    	return null;
+    	return col;
     }
     
     private ListAdapter createCursorAdapter(final Intent intent) {
@@ -85,7 +85,7 @@ public class ListItemSelectionActivity extends Activity implements TextWatcher, 
     		displayColumns = new String[] { line1 };
     		textIds = null;
     	}
-    	
+
     	Cursor cursor = managedQuery(intent.getData(), columns, null, null, line1);
     	CursorAdapter cursorAdapter = new SimpleCursorAdapter(
     			this,
