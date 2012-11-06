@@ -1,11 +1,16 @@
 package com.packtpub.selector;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -16,7 +21,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class ListItemSelectionActivity extends Activity implements TextWatcher
+public class ListItemSelectionActivity extends Activity implements TextWatcher, OnItemClickListener
 {
 	
 	private ListAdapter adapter;
@@ -34,6 +39,7 @@ public class ListItemSelectionActivity extends Activity implements TextWatcher
         adapter = createListAdapter();
         filter = ((Filterable)adapter).getFilter();
         list.setAdapter(adapter);
+        list.setOnItemClickListener(this);
         input.addTextChangedListener(this);
     }
     
@@ -126,5 +132,18 @@ public class ListItemSelectionActivity extends Activity implements TextWatcher
 	@Override
 	public void afterTextChanged(Editable s) {
 		filter.filter(s);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Intent data = new Intent();
+		if ( adapter instanceof CursorAdapter ) {
+			data.putExtra("selection", id);
+		} else {
+			data.putExtra("selection", (Serializable)parent.getItemAtPosition(position));
+		}
+		setResult(RESULT_OK, data);
+		finish();
 	}
 }
