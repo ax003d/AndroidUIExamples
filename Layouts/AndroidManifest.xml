@@ -32,5 +32,10 @@
             android:label="Relative Layout Example">         
         </activity>
 
+        <activity
+            android:name="SlidingDrawerActivity"
+            android:label="Sliding Drawer Example">         
+        </activity>
+
     </application>
 </manifest>

@@ -37,6 +37,9 @@ public class LayoutSelectorActivity extends ListActivity
     	case 3:
     		startActivity(new Intent(this, RelativeLayoutActivity.class));
     		break;    	
+    	case 4:
+    		startActivity(new Intent(this, SlidingDrawerActivity.class));
+    		break;    		
     	default:
     		Toast.makeText(this, "Example not yet implemented", Toast.LENGTH_SHORT).show();
     	}
