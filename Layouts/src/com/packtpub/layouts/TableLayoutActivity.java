@@ -31,7 +31,6 @@ public class TableLayoutActivity extends Activity {
 	
 	private MemoryCard[] cards;
 	private MemoryCard visible = null;
-	private boolean touchEnalbed = true;
 	
 	private class MemoryCard implements OnClickListener {
 
@@ -55,7 +54,7 @@ public class TableLayoutActivity extends Activity {
 		
 		@Override
 		public void onClick(View v) {
-			if ( !faceVisible && touchEnalbed ) {
+			if ( !faceVisible ) {
 				onMemoryCardUncovered(this);
 			}
 		}		
@@ -89,24 +88,31 @@ public class TableLayoutActivity extends Activity {
 		}		
 	}
 	
+	private void setMemoryCardClickable(boolean clickable) {
+		for ( MemoryCard mc: cards ) {
+			mc.button.setClickable(clickable);
+		}
+	}
+	
 	private void onMemoryCardUncovered(final MemoryCard cell) {
 		if ( visible == null ) {
 			visible = cell;
 			visible.setFaceVisible(true);
+			cell.button.setClickable(false);
 		} else if ( visible.faceImage == cell.faceImage ) {
 			cell.setFaceVisible(true);
-			cell.button.setEnabled(false);
-			visible.button.setEnabled(false);
+			cell.button.setClickable(false);			
 			visible = null;
 		} else {
 			cell.setFaceVisible(true);
-			touchEnalbed = false;
+			setMemoryCardClickable(false);
+			
 			handler.postDelayed(new Runnable() {
 				public void run() {
 					cell.setFaceVisible(false);
 					visible.setFaceVisible(false);
 					visible = null;
-					touchEnalbed = true;
+					setMemoryCardClickable(true);
 				}
 			}, 1000);
 		}
