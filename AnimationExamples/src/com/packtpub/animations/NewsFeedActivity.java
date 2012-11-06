@@ -22,13 +22,6 @@ public class NewsFeedActivity extends Activity implements Runnable {
 
 		headlines = getResources().getStringArray(R.array.headlines);
 		newsFeed = (TextSwitcher) findViewById(R.id.news_feed);
-		newsFeed.setFactory(new ViewFactory() {
-
-			@Override
-			public View makeView() {
-				return new TextView(NewsFeedActivity.this);
-			}
-		});
 	}
 
 	@Override
