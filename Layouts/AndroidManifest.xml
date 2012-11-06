@@ -22,5 +22,10 @@
             android:label="Table Layout Example">         
         </activity>
 
+        <activity
+            android:name="CircleLayoutActivity"
+            android:label="Circle Layout Example">         
+        </activity>
+
     </application>
 </manifest>
