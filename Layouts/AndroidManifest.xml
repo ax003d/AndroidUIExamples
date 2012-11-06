@@ -27,5 +27,10 @@
             android:label="Circle Layout Example">         
         </activity>
 
+        <activity
+            android:name="RelativeLayoutActivity"
+            android:label="Relative Layout Example">         
+        </activity>
+
     </application>
 </manifest>

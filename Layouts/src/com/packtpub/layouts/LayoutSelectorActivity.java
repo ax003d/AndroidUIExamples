@@ -34,6 +34,9 @@ public class LayoutSelectorActivity extends ListActivity
     	case 2:
     		startActivity(new Intent(this, CircleLayoutActivity.class));
     		break;
+    	case 3:
+    		startActivity(new Intent(this, RelativeLayoutActivity.class));
+    		break;    	
     	default:
     		Toast.makeText(this, "Example not yet implemented", Toast.LENGTH_SHORT).show();
     	}
