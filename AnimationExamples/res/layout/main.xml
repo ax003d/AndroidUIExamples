@@ -12,5 +12,12 @@
           android:text="News Feed"
           />
   
+  <Button android:id="@+id/colors"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:text="Color Selector"
+      />
+  
 </LinearLayout>
 

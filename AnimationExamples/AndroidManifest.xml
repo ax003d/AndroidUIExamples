@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.packtpub.animations"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
-        <activity android:name="AnimationSelector"
-                  android:label="@string/app_name">
+    package="com.packtpub.animations"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="AnimationSelector"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="NewsFeedActivity"
-                  android:label="News Feed Activity">          
+        <activity
+            android:name="NewsFeedActivity"
+            android:label="News Feed Activity" >
         </activity>
-
+        <activity
+            android:name="ColorSelectorActivity"
+            android:label="Color Selector Activity" >
+        </activity>
     </application>
+
 </manifest>

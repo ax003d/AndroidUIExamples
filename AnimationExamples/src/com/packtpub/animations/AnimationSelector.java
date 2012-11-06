@@ -17,6 +17,7 @@ public class AnimationSelector extends Activity implements OnClickListener
         setContentView(R.layout.main);
         
         ((Button)findViewById(R.id.news_feed)).setOnClickListener(this);
+        ((Button)findViewById(R.id.colors)).setOnClickListener(this);        
     }
 
 	@Override
@@ -24,6 +25,9 @@ public class AnimationSelector extends Activity implements OnClickListener
 		switch ( v.getId() ) {
 		case R.id.news_feed:
 			startActivity(new Intent(this, NewsFeedActivity.class));
+			break;
+		case R.id.colors:
+			startActivity(new Intent(this, ColorSelectorActivity.class));
 			break;
 		default:
 			break;
