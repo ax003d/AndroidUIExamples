@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="CalculatorButton"
+        parent="@android:style/Widget.Button">
+        
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#ffcacaca</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        
+    </style>
+    
+</resources>
