@@ -12,4 +12,22 @@
         
     </style>
     
+    <style name="CalculatorDisplay">
+        
+        <item name="android:background">@drawable/display_background</item>
+        <item name="android:layout_marginBottom">25sp</item>
+        <item name="android:layout_marginTop">50sp</item>
+        
+    </style>
+    
+    <style name="CalculatorTextDisplay"
+        parent="@android:style/TextAppearance">
+        
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:gravity">right</item>
+        
+    </style>
+    
 </resources>
