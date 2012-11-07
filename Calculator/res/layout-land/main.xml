@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        style="@style/CalculatorDisplay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@android:drawable/ic_input_delete" />
+
+        <TextView
+            android:id="@+id/display"
+            style="@style/CalculatorTextDisplay"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/delete"
+            android:text="0" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <TableLayout
+            android:id="@+id/scientific_functions"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="10dp" >
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/inverse"
+                    style="@style/ScientificButton"
+                    android:text="@string/inverse" />
+
+                <Button
+                    android:id="@+id/square"
+                    style="@style/ScientificButton"
+                    android:text="@string/square" />
+
+                <Button
+                    android:id="@+id/cube"
+                    style="@style/ScientificButton"
+                    android:text="@string/cube" />
+
+                <Button
+                    android:id="@+id/pow"
+                    style="@style/ScientificButton"
+                    android:text="@string/pow" />
+
+                <Button
+                    android:id="@+id/percent"
+                    style="@style/ScientificButton"
+                    android:text="@string/percent" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/cos"
+                    style="@style/ScientificButton"
+                    android:text="@string/cos" />
+
+                <Button
+                    android:id="@+id/sin"
+                    style="@style/ScientificButton"
+                    android:text="@string/sin" />
+
+                <Button
+                    android:id="@+id/tan"
+                    style="@style/ScientificButton"
+                    android:text="@string/tan" />
+
+                <Button
+                    android:id="@+id/log2"
+                    style="@style/ScientificButton"
+                    android:text="@string/log2" />
+
+                <Button
+                    android:id="@+id/log10"
+                    style="@style/ScientificButton"
+                    android:text="@string/log10" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/acos"
+                    style="@style/ScientificButton"
+                    android:text="@string/acos" />
+
+                <Button
+                    android:id="@+id/asin"
+                    style="@style/ScientificButton"
+                    android:text="@string/asin" />
+
+                <Button
+                    android:id="@+id/atan"
+                    style="@style/ScientificButton"
+                    android:text="@string/atan" />
+
+                <Button
+                    android:id="@+id/log"
+                    style="@style/ScientificButton"
+                    android:text="@string/log" />
+
+                <Button
+                    android:id="@+id/log1p"
+                    style="@style/ScientificButton"
+                    android:text="@string/log1p" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/e"
+                    style="@style/ScientificButton"
+                    android:text="@string/e" />
+
+                <Button
+                    android:id="@+id/pi"
+                    style="@style/ScientificButton"
+                    android:text="@string/pi" />
+
+                <Button
+                    android:id="@+id/random"
+                    style="@style/ScientificButton"
+                    android:text="@string/random" />
+
+                <Button
+                    android:id="@+id/sqrt"
+                    style="@style/ScientificButton"
+                    android:text="@string/sqrt" />
+
+                <Button
+                    android:id="@+id/hyp"
+                    style="@style/ScientificButton"
+                    android:text="@string/hyp" />
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/standard_functions"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="0px"
+            android:stretchColumns="0,1,2,3" >
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/plus"
+                    style="@style/ScientificButton"
+                    android:text="+" />
+
+                <Button
+                    android:id="@+id/one"
+                    style="@style/ScientificButton"
+                    android:text="1" />
+
+                <Button
+                    android:id="@+id/two"
+                    style="@style/ScientificButton"
+                    android:text="2" />
+
+                <Button
+                    android:id="@+id/three"
+                    style="@style/ScientificButton"
+                    android:text="3" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/minus"
+                    style="@style/ScientificButton"
+                    android:text="-" />
+
+                <Button
+                    android:id="@+id/four"
+                    style="@style/ScientificButton"
+                    android:text="4" />
+
+                <Button
+                    android:id="@+id/five"
+                    style="@style/ScientificButton"
+                    android:text="5" />
+
+                <Button
+                    android:id="@+id/six"
+                    style="@style/ScientificButton"
+                    android:text="6" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/multiply"
+                    style="@style/ScientificButton"
+                    android:text="*" />
+
+                <Button
+                    android:id="@+id/seven"
+                    style="@style/ScientificButton"
+                    android:text="7" />
+
+                <Button
+                    android:id="@+id/eight"
+                    style="@style/ScientificButton"
+                    android:text="8" />
+
+                <Button
+                    android:id="@+id/nine"
+                    style="@style/ScientificButton"
+                    android:text="9" />
+            </TableRow>
+
+            <TableRow
+                android:layout_margin="0px"
+                android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/divide"
+                    style="@style/ScientificButton"
+                    android:text="/" />
+
+                <Button
+                    android:id="@+id/percentage"
+                    style="@style/ScientificButton"
+                    android:text="%" />
+
+                <Button
+                    android:id="@+id/zero"
+                    style="@style/ScientificButton"
+                    android:text="0" />
+
+                <Button
+                    android:id="@+id/equal"
+                    style="@style/ScientificButton"
+                    android:text="=" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

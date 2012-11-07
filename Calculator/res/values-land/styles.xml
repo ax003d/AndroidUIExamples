@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="CalculatorDisplay">
+        
+        <item name="android:background">
+            @drawable/display_background
+        </item>
+        
+    </style>
+    
+    <style name="ScientificButton" parent="@style/CalculatorButton">
+        
+        <item name="android:textSize">12sp</item>
+        
+    </style>
+    
+</resources>
