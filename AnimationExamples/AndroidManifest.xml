@@ -24,6 +24,15 @@
             android:name="ColorSelectorActivity"
             android:label="Color Selector Activity" >
         </activity>
+        <activity
+            android:name=".VanishingButtonActivity"
+            android:label="@string/title_activity_vanishing_button" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
